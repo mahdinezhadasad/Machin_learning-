@@ -12,8 +12,10 @@ from sklearn.model_selection import train_test_split
 from sklearn.svm import SVC 
 
 df =  pd.read_csv('SVM.csv')
-
+"we dropped the unsufule values"
 df.drop(['id','Unnamed: 32'],axis = 1 , inplace = True) 
+
+" changing string value to int values"
 
 df.diagnosis = [ 1 if each == 'M' else 0 for each in df.diagnosis ]
 
@@ -73,7 +75,13 @@ print('eclf {}'.format(eclf.score(test_x,test_y)))
 print('clf5 {}'.format(clf5.score(test_x,test_y)))
 
 #%%
+"""
+we will control the Hierarchy cluster
+we create random number from normal value which has gaussian distrubition then we will plot it to see 
+then we will concatenate it form numpy and at the end will make dictionary then form pd.Dataframe will make an pandas form then 
+visualize it. 
 
+"""
 import numpy as np
 import pandas as pd 
 import matplotlib.pyplot as plt
@@ -100,18 +108,29 @@ plt.scatter(x3,y3)
 
 plt.show()
 #%%
+"""
+from Scipy we will calculate the dendrogram of and according to the longest dedrogram will 
 
+decide to have how many cluster  and the method was chosen is ward wich can be differ 
+
+
+"""
 from scipy.cluster.hierarchy import linkage ,dendrogram
 
 merg = linkage(data,method = 'ward')
 
 dendrogram(merg,leaf_rotation = 90)
-plt.xlabe('data point')
+plt.xlabel('data point')
 plt.ylabel('euclidan distance')
 plt.show()
 
 #%%
+"""
+from agglomerative clustering we clarify the 3 cluseter the by ploting it we will 
 
+see ther result.
+
+"""
 from sklearn.cluster import AgglomerativeClustering
 
 hiyrachical_clustering = AgglomerativeClustering(n_clusters = 3 , affinity = 'euclidean',linkage = 'ward')
